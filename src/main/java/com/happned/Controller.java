@@ -25,6 +25,11 @@ public class Controller {
             return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
+    @GetMapping("/")
+    public ResponseEntity<String> keepAlive(){
+    	return new ResponseEntity<>("I am alive :)", HttpStatus.OK);
+    }
+    
 //    @GetMapping("/like/{id}")
 //    public ResponseEntity<Object> likeProfile(@RequestBody String token, @PathVariable String id){
 //        try{
