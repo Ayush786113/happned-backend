@@ -30,12 +30,12 @@ public class Controller {
     	return new ResponseEntity<>("I am alive :)", HttpStatus.OK);
     }
     
-//    @GetMapping("/like/{id}")
-//    public ResponseEntity<Object> likeProfile(@RequestBody String token, @PathVariable String id){
-//        try{
-//            return new ResponseEntity<>(service.likeProfile(token, id), HttpStatus.OK);
-//        } catch (Exception exception){
-//            return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
-//        }
-//    }
+    @PostMapping("/like/{id}")
+    public ResponseEntity<Object> likeProfile(@RequestBody String token, @PathVariable String id){
+        try{
+            return new ResponseEntity<>(service.likeProfile(token, id), HttpStatus.OK);
+        } catch (Exception exception){
+            return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
 }

@@ -84,17 +84,16 @@ public class Service {
             user.setLiker((User) getProfile(token, getIDFromURL(personal.data.pending_likers.icon.url)));
         return user;
     }
-    private Object likeProfile(String token, String id) throws Exception{
+    public Object likeProfile(String token, String id) throws Exception{
         HttpResponse<String> response = null;
         ObjectMapper objectMapper = new ObjectMapper();
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create("https://api.happn.fr/api/users/me/accepted/"+id))
                 .header("Authorization", token)
-                .method("POST", HttpRequest.BodyPublishers.noBody())
+                .method("POST", HttpRequest.BodyPublishers.ofString("{\"reaction\":{\"id\":\"heart\"},\"container\":{\"type\":\"PHOTO\",\"content\":{\"id\":\"ae285170-83f8-11ee-ab54-db2f1607ee50\"}},\"tracking_custom_data\":{\"reaction_index\":0,\"container_index\":0,\"content_index\":0}}"))
                 .build();
         response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
         Error error = objectMapper.readValue(response.body(), Error.class);
-        System.out.println(error);
         return error.status;
     }
     public Object getRecommendations(String token) throws Exception{
